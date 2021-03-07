@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    buildFeatures {
+        dataBinding true
+        // for view binding:
+        viewBinding true
+    }
+
+    defaultConfig {
+        applicationId "com.walkiriaapps.currencyexchangecalculator"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.dagger:hilt-android:2.33-beta'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.33-beta'
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    //Data Binding
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+}
+
+apply plugin: 'dagger.hilt.android.plugin'

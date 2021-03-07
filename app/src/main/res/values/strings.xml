@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">currencyexchangecalculator</string>
+    <string name="error_retrieving_values">There has been an error retrieving values, we cannot offer an update exchange rate.</string>
+</resources>
