@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Currency Exchange Calculator</string>
+    <string name="welcome">Bienvenido a la calculadora de cambio de divisas de Walkiria Apps.
+        Por favor seleccione la cantidad deseada, moneda base y moneda destino.</string>
+    <string name="quantity">Escriba la cantidad aquí</string>
+    <string name="from">De:</string>
+    <string name="to">A:</string>
+    <string name="calculate">Calcular</string>
+    <string name="invalid_value">Valor no válido, ha de escribir una cantidad numérica.</string>
+    <string name="error">Error</string>
+    <string name="set_valid_quantity">Por favor, introduzca una cantidad válida.</string>
+    <string name="ok">OK</string>
+    <string name="results"><![CDATA[%s %s => %s \nBasado en los datos a día %s\n 1 %s = %s %s]]></string>
+    <string name="powered_by"><u>Powered by Walkiria Apps</u></string>
+    <string name="contact_me"><u>Contacto</u></string>
+    <string name="outdated_information">La tasa de cambio puede estar desactualizada. Por favor, revise su conexión a internet e inténtelo de nuevo.
+        Última actualización el: %s</string>
+</resources>

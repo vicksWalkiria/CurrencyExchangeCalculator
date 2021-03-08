@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -31,12 +29,16 @@ import static android.view.View.GONE;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
+    private static final String BASE_CURRENCY_1 = "USD";
+    private static final String BASE_CURRENCY_2 = "EUR";
     private MainViewModel mainViewModel;
     private ProgressBar progressBar;
     private EditText quantityEditText;
     private Spinner spinnerFrom, spinnerTo;
     private Button calculateButton;
-    private TextView resultTextView, poweredBy, contactMe;
+    private TextView resultTextView;
+    private final String SUPPORT_EMAIL = "walkiriaappsdevelopment@gmail.com";
+    private final String SUPPORT_URL = "https://walkiriaapps.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,35 +71,28 @@ public class MainActivity extends AppCompatActivity {
         spinnerTo = findViewById(R.id.toSpinner);
         calculateButton = findViewById(R.id.buttonConvert);
         resultTextView = findViewById(R.id.result);
-        poweredBy = findViewById(R.id.powered_by);
-        contactMe = findViewById(R.id.contactMe);
+        TextView poweredBy = findViewById(R.id.powered_by);
+        TextView contactMe = findViewById(R.id.contactMe);
 
         calculateButton = findViewById(R.id.buttonConvert);
         initializeSpinners();
         initializeButtonLogic();
 
-        poweredBy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://walkiriaapps.com"));
-                startActivity(browserIntent);
-            }
+        poweredBy.setOnClickListener(view -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(SUPPORT_URL));
+            startActivity(browserIntent);
         });
 
-        contactMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"walkiriaappsdevelopment@gmail.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "Currency Exchange Calculator");
-                email.putExtra(Intent.EXTRA_TEXT, "");
-                email.setType("text/plain");
-                startActivity(Intent.createChooser(email, ""));
-            }
+        contactMe.setOnClickListener(view -> {
+            Intent email = new Intent(Intent.ACTION_SEND);
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{SUPPORT_EMAIL});
+            email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            email.putExtra(Intent.EXTRA_TEXT, "");
+            email.setType("text/plain");
+            startActivity(Intent.createChooser(email, ""));
         });
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String currentDatedate = dateFormat.format(new Date());
-            Log.d("WALKIRIA", "currentDatedate: " +currentDatedate + " DATE2: " + mainViewModel.getDateOfLastUpdate());
             if (!mainViewModel.getDateOfLastUpdate().equals(currentDatedate)) {
                 displayMessage(getString(R.string.outdated_information, mainViewModel.getDateOfLastUpdate()));
             }
@@ -105,34 +100,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeButtonLogic() {
-        calculateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String quantity = quantityEditText.getText().toString();
-                if (quantity.length() < 1) {
-                    displayMessage(getString(R.string.invalid_value));
-                } else {
-                    String resultOperation = mainViewModel.calculateValue(quantityEditText.getText().toString().replace(",", "."),
-                            (String) spinnerFrom.getSelectedItem(), (String) spinnerTo.getSelectedItem());
-                    String stringToShow = getString(R.string.results, quantity, spinnerFrom.getSelectedItem(), resultOperation, mainViewModel.getDateOfLastUpdate(),
-                            spinnerFrom.getSelectedItem(), String.valueOf(mainViewModel.getBaseCurrency()), spinnerTo.getSelectedItem());
-                    resultTextView.setText(stringToShow);
-                }
+        calculateButton.setOnClickListener(view -> {
+            String quantity = quantityEditText.getText().toString();
+            if (quantity.length() < 1) {
+                displayMessage(getString(R.string.invalid_value));
+            } else {
+                String resultOperation = mainViewModel.calculateValue(quantityEditText.getText().toString().replace(",", "."),
+                        (String) spinnerFrom.getSelectedItem(), (String) spinnerTo.getSelectedItem());
+                String stringToShow = getString(R.string.results, quantity, spinnerFrom.getSelectedItem(), resultOperation, mainViewModel.getDateOfLastUpdate(),
+                        spinnerFrom.getSelectedItem(), String.valueOf(mainViewModel.getBaseCurrency()), spinnerTo.getSelectedItem());
+                resultTextView.setText(stringToShow);
             }
         });
     }
 
     private void initializeSpinners() {
         String[] currencies = mainViewModel.getCurrencies();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, currencies);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFrom.setAdapter(adapter);
         spinnerTo.setAdapter(adapter);
 
-        spinnerFrom.setSelection(Arrays.asList(currencies).indexOf("USD"));
-        spinnerTo.setSelection(Arrays.asList(currencies).indexOf("EUR"));
+        spinnerFrom.setSelection(Arrays.asList(currencies).indexOf(BASE_CURRENCY_1));
+        spinnerTo.setSelection(Arrays.asList(currencies).indexOf(BASE_CURRENCY_2));
     }
 
     public void displayMessage(String s) {

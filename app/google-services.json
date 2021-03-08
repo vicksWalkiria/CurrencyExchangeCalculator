@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611392958307",
+    "project_id": "currencyexchangecalculatorwal",
+    "storage_bucket": "currencyexchangecalculatorwal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611392958307:android:1fa56101c51ab662d9ed56",
+        "android_client_info": {
+          "package_name": "com.walkiriaapps.currencyexchangecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611392958307-a2i6jrqaco6a65k4stllsfl8kbvc1rdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBalzUYYTnLQ__ZyAIJozBzC4p6stUjSDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611392958307-a2i6jrqaco6a65k4stllsfl8kbvc1rdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

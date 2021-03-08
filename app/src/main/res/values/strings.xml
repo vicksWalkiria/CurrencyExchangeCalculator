@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Currency Exchange Calculator</string>
-    <string name="error_retrieving_values">There has been an error retrieving values, we cannot offer an update exchange rate, please check back later and check your internet connection.</string>
     <string name="welcome">Welcome to Walkiria\'s currency exchange calculator. Please select your desired quantity, base coin and destination currency</string>
     <string name="quantity">Type quantity</string>
     <string name="from">From:</string>
@@ -14,4 +13,5 @@
     <string name="powered_by"><u>Powered by Walkiria Apps</u></string>
     <string name="contact_me"><u>Contact me</u></string>
     <string name="outdated_information">The currency exchange rate may be  outdated, please check your internet connection to refresh it.\nLast update on: %s</string>
+    <string name="error_retrieving_values">There has been an error retrieving values, we cannot offer an update exchange rate, please check back later and check your internet connection.</string>
 </resources>
