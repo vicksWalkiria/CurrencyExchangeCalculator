@@ -53,7 +53,7 @@ public class Rates {
 
     private double ZAR;
 
-    private int USD;
+    private double USD;
 
     private double MXN;
 
@@ -275,11 +275,11 @@ public class Rates {
         return this.ZAR;
     }
 
-    public void setUSD(int USD) {
+    public void setUSD(double USD) {
         this.USD = USD;
     }
 
-    public int getUSD() {
+    public double getUSD() {
         return this.USD;
     }
 

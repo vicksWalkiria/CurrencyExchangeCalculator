@@ -6,12 +6,6 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
-    buildFeatures {
-        dataBinding true
-        // for view binding:
-        viewBinding true
-    }
-
     defaultConfig {
         applicationId "com.walkiriaapps.currencyexchangecalculator"
         minSdkVersion 23
@@ -51,8 +45,6 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    //Data Binding
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
 }
 
 apply plugin: 'dagger.hilt.android.plugin'

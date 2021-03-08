@@ -18,4 +18,9 @@ public class GetCurrencyValuesImpl implements GetCurrencyValues {
     public CurrencyModel requestData() {
         return currencyDataSource.provideGetCurrencyData();
     }
+
+    @Override
+    public String[] requestCurrencies() {
+        return currencyDataSource.provideCurrencies();
+    }
 }
