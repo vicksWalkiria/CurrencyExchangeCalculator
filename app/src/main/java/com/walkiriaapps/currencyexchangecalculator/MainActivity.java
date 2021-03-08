@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"walkiriaappsdevelopment@gmail.com"});
                 email.putExtra(Intent.EXTRA_SUBJECT, "Currency Exchange Calculator");
                 email.putExtra(Intent.EXTRA_TEXT, "");
-
+                email.setType("text/plain");
                 startActivity(Intent.createChooser(email, ""));
             }
         });
