@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 @InstallIn(SingletonComponent.class)
 public final class DataProvidersModule {
-    static final String BASE_URL = "https://api.exchangeratesapi.io/";
+    static final String BASE_URL = "https://cambioeur.com/";
 
     @Provides
     static Retrofit provideRetrofit() {
@@ -20,14 +20,11 @@ public final class DataProvidersModule {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-
-
         return retrofit;
     }
 

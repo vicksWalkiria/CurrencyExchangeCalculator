@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String currentDatedate = dateFormat.format(new Date());
+            Log.d("WALKIRIA", currentDatedate + " - "+ mainViewModel.getDateOfLastUpdate());
             if (!mainViewModel.getDateOfLastUpdate().equals(currentDatedate)) {
                 displayMessage(getString(R.string.outdated_information, mainViewModel.getDateOfLastUpdate()));
             }

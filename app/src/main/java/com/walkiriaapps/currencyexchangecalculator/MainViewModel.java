@@ -60,7 +60,7 @@ public class MainViewModel extends ViewModel {
             destinationRate = (double) method2.invoke(rates);
             double result = baseDollars * destinationRate;
 
-            DecimalFormat f = new DecimalFormat("#,##0.00");
+            DecimalFormat f = new DecimalFormat("#,####0.0000");
 
             return String.valueOf(f.format(result) + " " + to);
 
@@ -76,7 +76,7 @@ public class MainViewModel extends ViewModel {
     
     public String getBaseCurrency()
     {
-        DecimalFormat f = new DecimalFormat("#,##0.00");
+        DecimalFormat f = new DecimalFormat("#,####0.0000");
         return f.format((1/baseRate) * destinationRate);
     }
 }

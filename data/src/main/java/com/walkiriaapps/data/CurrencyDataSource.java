@@ -41,14 +41,13 @@ public class CurrencyDataSource {
         prefs = app.getSharedPreferences(app.getPackageName(), Context.MODE_PRIVATE);
     }
 
-
-    //Devolver CurrencyModel (puede que se necesite un mapper)
     public CurrencyModel provideGetCurrencyData() {
         CurrencyModel model;
         try {
-            if(isThereAnActiveInternetConnection()) {
+            Log.d("WALKIRIA", "ACTIVE CONNECTION: " + isThereAnActiveInternetConnection());
+            if (isThereAnActiveInternetConnection()) {
                 CurrencyValuesService CERApi = retrofit.create(CurrencyValuesService.class);
-                Call<JsonObject> call = CERApi.getExchangeRate("USD");
+                Call<JsonObject> call = CERApi.getExchangeRate("rates.txt");
                 try {
                     String result = call.execute().body().toString();
                     prefs.edit().putString(CURRENCY_RESULTS, result).commit();
@@ -56,12 +55,10 @@ public class CurrencyDataSource {
                 } catch (Exception e) {
                     model = null;
                 }
+            } else {
+                model = getModelFromPrefs();
             }
-            else
-            {
-              model = getModelFromPrefs();
-            }
-        } catch (InterruptedException | IOException e1){
+        } catch (InterruptedException | IOException e1) {
             model = getModelFromPrefs();
         }
         return model;
@@ -69,11 +66,9 @@ public class CurrencyDataSource {
 
     private CurrencyModel getModelFromPrefs() {
         String provModel = prefs.getString(CURRENCY_RESULTS, "");
-        if(provModel.length()>1) {
+        if (provModel.length() > 1) {
             return new Gson().fromJson(prefs.getString(CURRENCY_RESULTS, ""), CurrencyModel.class);
-        }
-        else
-        {
+        } else {
             return null;
         }
     }

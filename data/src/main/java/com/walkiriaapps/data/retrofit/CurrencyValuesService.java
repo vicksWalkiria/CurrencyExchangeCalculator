@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface CurrencyValuesService {
-    @GET("/latest")
+    @GET("rates.txt")
     Call<JsonObject> getExchangeRate(@Query("base") String base);
 }
